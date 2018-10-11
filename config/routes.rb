@@ -5,17 +5,20 @@ Rails.application.routes.draw do
 
     post "/users" => "users#create"
 
+    post "/sessions" => "sessions#create"
+
+
     get "/addictions" => 'addictions#index'
     post "/addictions" => 'addictions#create'
     get "/addictions/:id" => 'addictions#show'
-    # patch "/addictions/:id" => 'addictions#update'
+    patch "/addictions/:id" => 'addictions#update'
     delete "/addictions/:id" => 'addictions#destroy'
 
-    get "/addictions_occurences" => 'addictions_occurences#index'
-    post "/addictions_occurences" => 'addictions_occurences#create'
-    get "/addictions_occurences/:id" => 'addictions_occurences#show'
-    # patch "/addictions_occurences/:id" => 'addictions_occurences#update'
-    # delete "/addictions_occurences/:id" => 'addictions_occurences#destroy'
+    get "/addiction_occurrences" => 'addiction_occurrences#index'
+    post "/addiction_occurrences" => 'addiction_occurrences#create'
+    get "/addiction_occurrences/:id" => 'addiction_occurrences#show'
+    # patch "/addiction_occurrences/:id" => 'addiction_occurrences#update'
+    # delete "/addiction_occurrences/:id" => 'addiction_occurrences#destroy'
 
   end
 end

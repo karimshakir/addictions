@@ -2,7 +2,7 @@ class Api::AddictionsController < ApplicationController
 
   def index
 
-    @addiction = Addiction.all
+    @addictions = Addiction.all
     # search_term = params[:search]
     # sort_attribute = params[:sort]
     # sort_order = params[:sort_order]
@@ -55,15 +55,13 @@ class Api::AddictionsController < ApplicationController
       else
         render json: {errors: @addiction.errors.full_messages }, status: :unprocessable_entity
       end
+    end
 
     def destroy
       @addiction = Addiction.find(params[:id])
       @addiction.destroy
       render json: {message: "Addiction successfully destroyed"}
-  end
-
-
-end
+    end
 
 
 

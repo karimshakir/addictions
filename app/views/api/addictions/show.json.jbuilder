@@ -1,3 +1,2 @@
-# json.id @addiction.id
-json.name @addiction.name
+json.partial! @addiction, partial: 'addiction', as: :addiction
 
