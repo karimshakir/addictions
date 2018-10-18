@@ -4,3 +4,4 @@ json.circumstance addiction_occurrence.circumstance
 json.amount addiction_occurrence.amount
 json.cost addiction_occurrence.cost
 json.craving addiction_occurrence.craving
+json.addiction addiction_occurrence.addiction.name

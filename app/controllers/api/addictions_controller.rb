@@ -3,21 +3,6 @@ class Api::AddictionsController < ApplicationController
   def index
 
     @addictions = Addiction.all
-    # search_term = params[:search]
-    # sort_attribute = params[:sort]
-    # sort_order = params[:sort_order]
-
-    # @addictions = Addiction.all
-
-    # if search_term
-    #   @addictions = @addictions.where("name iLIKE ?", "%#{search_term}%")
-    # end
-
-    # if sort_order && sort_attribute
-    #   @addictions = @addictions.order(sort_attribute => sort_order)
-    # elsif sort_attribute
-    #   @addictions = @addictions.order(sort_attribute)
-    # end
 
     render 'index.json.jbuilder'
   end

@@ -19,6 +19,5 @@ Rails.application.routes.draw do
     get "/addiction_occurrences/:id" => 'addiction_occurrences#show'
     # patch "/addiction_occurrences/:id" => 'addiction_occurrences#update'
     # delete "/addiction_occurrences/:id" => 'addiction_occurrences#destroy'
-
   end
 end
