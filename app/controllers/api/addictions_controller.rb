@@ -9,18 +9,12 @@ class Api::AddictionsController < ApplicationController
 
   def create
     @addiction = Addiction.new(
-                           name: params[:name],
-                          )
-
-  #   @product = Product.new(
-  #                          name: params[:name],
-  #                          price: params[:price],
-  #                          description: params[:description]
-  #                         )
+                              name: params[:name]
+                              )
     if @addiction.save
       render 'show.json.jbuilder'
     else
-      render json: {errors: @addiction.errors.full_messages}, status: :unprocessable_entity
+      render json: {errors: @addiction.errors.full_messages}, status: :bad_request
     end
   end
 

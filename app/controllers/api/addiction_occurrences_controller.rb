@@ -40,8 +40,8 @@ class Api::AddictionOccurrencesController < ApplicationController
                                         addiction_id: params[:addiction_id],
                                         location: params[:location],
                                         circumstance: params[:circumstance],
-                                        amount: params[:amount],
-                                        cost: params[:cost]
+                                        amount: params[:amount] || 1,
+                                        cost: params[:cost] || 0
                                         )
     @addiction_occurrence.craving = params[:craving] || false
 
