@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   def current_user
     auth_headers = request.headers['Authorization']
+
+
     if auth_headers.present? && auth_headers[/(?<=\A(Bearer ))\S+\z/]
       token = auth_headers[/(?<=\A(Bearer ))\S+\z/]
       begin
@@ -12,6 +14,7 @@ class ApplicationController < ActionController::Base
           true,
           { algorithm: 'HS256' }
         )
+
         User.find_by(id: decoded_token[0]["user_id"])
       rescue JWT::ExpiredSignature
         nil

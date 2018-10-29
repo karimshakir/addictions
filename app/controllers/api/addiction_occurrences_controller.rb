@@ -1,8 +1,8 @@
 class Api::AddictionOccurrencesController < ApplicationController
 
-    # before_action :authenticate_admin
+    before_action :authenticate_user, only: [:create]
 
-   def index
+  def index
     sort_user = params[:sort_user]
     sort_addiction = params[:addiction_id]
     sort_location = params[:location]
@@ -35,15 +35,16 @@ class Api::AddictionOccurrencesController < ApplicationController
 
 
   def create
+
     @addiction_occurrence = AddictionOccurrence.new(
                                         user_id: current_user.id,
                                         addiction_id: params[:addiction_id],
                                         location: params[:location],
                                         circumstance: params[:circumstance],
-                                        amount: params[:amount] || 1,
-                                        cost: params[:cost] || 0
+                                        amount: params[:amount],
+                                        cost: params[:cost],
+                                        craving: params[:craving]
                                         )
-    @addiction_occurrence.craving = params[:craving] || false
 
     @addiction_occurrence.save
     render 'show.json.jbuilder'
