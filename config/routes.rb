@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     patch "/addictions/:id" => 'addictions#update'
     delete "/addictions/:id" => 'addictions#destroy'
 
+    get "/circumstances" => 'circumstances#index'
+    post "/circumstances" => 'circumstances#create'
+    get "/circumstances/:id" => 'circumstances#show'
+    patch "/circumstances/:id" => 'circumstances#update'
+    delete "/circumstances/:id" => 'circumstances#destroy'
+
     get "/addiction_occurrences" => 'addiction_occurrences#index'
     post "/addiction_occurrences" => 'addiction_occurrences#create'
     get "/addiction_occurrences/:id" => 'addiction_occurrences#show'
