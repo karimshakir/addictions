@@ -12,6 +12,7 @@ class Api::AddictionsController < ApplicationController
                               name: params[:name]
                               )
     if @addiction.save
+
       render 'show.json.jbuilder'
     else
       render json: {errors: @addiction.errors.full_messages}, status: :bad_request

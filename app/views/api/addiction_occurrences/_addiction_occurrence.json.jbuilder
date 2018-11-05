@@ -6,3 +6,4 @@ json.amount addiction_occurrence.amount
 json.cost addiction_occurrence.cost
 json.craving addiction_occurrence.craving
 json.addiction_name addiction_occurrence.addiction.name
+json.created_at addiction_occurrence.created_at
