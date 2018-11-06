@@ -3,32 +3,25 @@ class Api::AddictionOccurrencesController < ApplicationController
     before_action :authenticate_user, only: [:create]
 
   def index
-    sort_user = params[:sort_user]
-    sort_addiction = params[:addiction_id]
-    sort_location = params[:location]
+    addiction_id_filter = params[:addiction_id] if params[:addiction_id]
+    unique_circumstances = params[:unique_circumstances]
+    location_filter = params[:location]
 
-    @addiction_occurrences = AddictionOccurrence.all   #current_user.addiction_occurences
+    @addiction_occurrences = AddictionOccurrence.where(user_id: current_user.id)  #current_user.addiction_occurences
 
-    if sort_user && sort_addiction && sort_location
-      @addiction_occurrences = AddictionOccurrence.where(user_id: sort_user, addiction_id: sort_addiction, location: sort_location)
+    if addiction_id_filter && location_filter
+      @addiction_occurrences = @addiction_occurrences.where(addiction_id: addiction_id_filter, location: location_filter)
 
-      elsif sort_user && sort_addiction
-      @addiction_occurrences = AddictionOccurrence.where(user_id: sort_user, addiction_id: sort_addiction)
+    elsif addiction_id_filter && unique_circumstances
+      @addiction_occurrences = @addiction_occurrences.where(addiction_id: addiction_id_filter).uniq {|addiction_occurrence| addiction_occurrence.circumstance}
 
-      elsif sort_user && sort_location
-      @addiction_occurrences = AddictionOccurrence.where(user_id: sort_user, location: sort_location)
+    elsif addiction_id_filter
+      @addiction_occurrences = @addiction_occurrences.where(addiction_id: addiction_id_filter)
 
-      elsif sort_user
-      @addiction_occurrences = AddictionOccurrence.where(user_id: sort_user)
-
-      elsif sort_addiction
-      @addiction_occurrences = AddictionOccurrence.where(addiction_id: sort_addiction)
-
-      elsif sort_location
-      @addiction_occurrences = AddictionOccurrence.where(location: sort_location)
-      else
-        @addiction_occurrences
+    elsif location_filter
+      @addiction_occurrences = @addiction_occurrences.where(location: location_filter)
     end
+
     render 'index.json.jbuilder'
   end
 
