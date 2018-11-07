@@ -12,7 +12,6 @@ class Api::AddictionsController < ApplicationController
                               name: params[:name]
                               )
     if @addiction.save
-
       render 'show.json.jbuilder'
     else
       render json: {errors: @addiction.errors.full_messages}, status: :bad_request
@@ -27,7 +26,6 @@ class Api::AddictionsController < ApplicationController
 
     def update
       @addiction = Addiction.find(params[:id])
-
       @addiction.name = params[:name] || @addiction.name
 
       if @addiction.save
