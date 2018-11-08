@@ -1,6 +1,6 @@
 class Api::AddictionOccurrencesController < ApplicationController
 
-    before_action :authenticate_user, only: [:create]
+    before_action :authenticate_user, only: [:create, :graph_info]
 
   def index
     addiction_id_filter = params[:addiction_id] if params[:addiction_id]
@@ -25,6 +25,11 @@ class Api::AddictionOccurrencesController < ApplicationController
     render 'index.json.jbuilder'
   end
 
+
+  def graph_info
+    @addiction_occurrences = current_user.addiction_occurrences
+    render 'graph.json.jbuilder'
+  end
 
 
   def create
