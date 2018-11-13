@@ -7,7 +7,7 @@ class Api::AddictionOccurrencesController < ApplicationController
     unique_circumstances = params[:unique_circumstances]
     location_filter = params[:location]
 
-    @addiction_occurrences = AddictionOccurrence.where(user_id: current_user.id)  #current_user.addiction_occurences
+    @addiction_occurrences = AddictionOccurrence.where(user_id: current_user.id).order(:created_at)  #current_user.addiction_occurences
 
     if addiction_id_filter && location_filter
       @addiction_occurrences = @addiction_occurrences.where(addiction_id: addiction_id_filter, location: location_filter)
@@ -25,11 +25,23 @@ class Api::AddictionOccurrencesController < ApplicationController
     render 'index.json.jbuilder'
   end
 
+  # def frequency
+  #   duration = params[:duration]
 
-  def graph_info
-    @addiction_occurrences = current_user.addiction_occurrences
-    render 'graph.json.jbuilder'
-  end
+  #   started_at = AddictionOccurrence.first.created_at
+  #   time_diff = (Time.current - started_at)
+  #   perDay = (time_diff/duration).day
+  #   perWeek = (time_diff/duration).week
+  #   perMonth = (time_diff/duration).month
+
+  #   @addiction_occurrences = AddictionOccurrence.where(user_id: current_user.id)  #current_user.addiction_occurences
+  #   # Occurence.where(addiction_id: 1, user_id: 1, created_at > Today - 1.week)
+
+  #   if duration == week
+  #   end
+
+  #   render 'index.json.jbuilder'
+  # end
 
 
   def create
@@ -40,11 +52,22 @@ class Api::AddictionOccurrencesController < ApplicationController
                                         location: params[:location],
                                         circumstance: params[:circumstance],
                                         amount: params[:amount],
-                                        cost: params[:cost],
+                                        # cost: params[:cost],
                                         craving: params[:craving]
                                         )
 
     @addiction_occurrence.save
     render 'show.json.jbuilder'
+  end
+
+  def show
+    render 'show.json.jbuilder'
+  end
+
+
+
+  def graph_info
+    @addiction_occurrences = current_user.addiction_occurrences
+    render 'graph.json.jbuilder'
   end
 end

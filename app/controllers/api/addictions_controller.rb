@@ -1,9 +1,12 @@
 class Api::AddictionsController < ApplicationController
 
+
+
   def index
 
-    @addictions = Addiction.all
-
+    @addictions = Addiction.where(user_id: current_user.id)
+    # @addictions = Addiction.where(user_id: current_user.id).order(:created_at)
+    # @addictions = Addiction.all
     render 'index.json.jbuilder'
   end
 
@@ -19,7 +22,8 @@ class Api::AddictionsController < ApplicationController
   end
 
     def show
-      addictions = Addiction.all
+      addictions = Addiction.where(user_id: current_user.id).order(:created_at)
+      # addictions = Addiction.all
       @addiction = addictions.find(params[:id])
       render 'show.json.jbuilder'
     end

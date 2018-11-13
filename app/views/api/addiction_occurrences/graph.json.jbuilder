@@ -17,9 +17,14 @@ json.children do
               json.array! occurrence_list_by_craving.group_by {|occurrence| occurrence.circumstance}.each do |circumstance, occurrence_list_by_circumstance|
                 json.name circumstance
                 json.children do
-                  json.array! occurrence_list_by_circumstance.each do |occurrence|
-                    json.name occurrence.created_at.strftime("%b %d, %Y")
-                    json.size occurrence.amount
+                  json.array! occurrence_list_by_craving.group_by {|occurrence| occurrence.created_at}.each do |created_at, occurrence_list_by_created_at|
+                    json.name created_at.strftime("%a")
+                    json.children do
+                      json.array! occurrence_list_by_created_at.each do |occurrence|
+                        json.name occurrence.created_at.strftime("%I:%M %p")
+                        json.size occurrence.amount
+                      end
+                    end
                   end
                 end
               end
