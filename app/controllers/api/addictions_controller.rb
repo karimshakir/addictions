@@ -3,10 +3,12 @@ class Api::AddictionsController < ApplicationController
 
 
   def index
+    if params["by_user"] == "yes"
+      @addictions = current_user.unique_addictions
+    else
+      @addictions = Addiction.all
+    end
 
-    @addictions = Addiction.where(user_id: current_user.id)
-    # @addictions = Addiction.where(user_id: current_user.id).order(:created_at)
-    # @addictions = Addiction.all
     render 'index.json.jbuilder'
   end
 
@@ -22,8 +24,7 @@ class Api::AddictionsController < ApplicationController
   end
 
     def show
-      addictions = Addiction.where(user_id: current_user.id).order(:created_at)
-      # addictions = Addiction.all
+      addictions = Addiction.all
       @addiction = addictions.find(params[:id])
       render 'show.json.jbuilder'
     end

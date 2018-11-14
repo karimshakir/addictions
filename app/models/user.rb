@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def unique_addictions
     addictions.uniq
   end
+
+  # def unique_circumstances
+  #   addiction_occurrences.map {|addiction_occurrence| addiction_occurrence.circumstance }.uniq
+  # end
 end
