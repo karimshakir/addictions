@@ -7,7 +7,9 @@ class Api::AddictionOccurrencesController < ApplicationController
     unique_circumstances = params[:unique_circumstances]
     location_filter = params[:location]
 
+
     @addiction_occurrences = AddictionOccurrence.where(user_id: current_user.id).order(:created_at)  #current_user.addiction_occurences
+
 
     if addiction_id_filter && location_filter
       @addiction_occurrences = @addiction_occurrences.where(addiction_id: addiction_id_filter, location: location_filter)

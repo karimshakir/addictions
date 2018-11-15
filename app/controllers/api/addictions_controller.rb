@@ -1,7 +1,6 @@
 class Api::AddictionsController < ApplicationController
 
 
-
   def index
     if params["by_user"] == "yes"
       @addictions = current_user.unique_addictions
