@@ -1,5 +1,5 @@
 
-json.name ""
+json.name " "
 json.children do
   json.array! @addiction_occurrences.group_by {|addiction_occurence| addiction_occurence.addiction.name}.each do |addiction_name, occurrences_list|
     json.name addiction_name

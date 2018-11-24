@@ -5,12 +5,7 @@ class User < ApplicationRecord
   has_many :addiction_occurrences
   has_many :addictions, through: :addiction_occurrences
 
-
   def unique_addictions
     addictions.uniq
   end
-
-  # def unique_circumstances
-  #   addiction_occurrences.map {|addiction_occurrence| addiction_occurrence.circumstance }.uniq
-  # end
 end

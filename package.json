@@ -1,5 +1,10 @@
 {
   "name": "addictions",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "vue2-filters": "^0.3.0"
+  }
 }
+
+
+
