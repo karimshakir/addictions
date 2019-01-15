@@ -1,8 +1,7 @@
 class Api::CircumstancesController < ApplicationController
-    def index
 
+  def index
     @circumstances = Circumstance.all
-
     render 'index.json.jbuilder'
   end
 
@@ -11,7 +10,6 @@ class Api::CircumstancesController < ApplicationController
                               description: params[:description]
                               )
     if @circumstance.save
-
       render 'show.json.jbuilder'
     else
       render json: {errors: @circumstance.errors.full_messages}, status: :bad_request
@@ -26,9 +24,7 @@ class Api::CircumstancesController < ApplicationController
 
     def update
       @circumstance = Circumstance.find(params[:id])
-
       @circumstance.description = params[:description] || @circumstance.description
-
       if @circumstance.save
         render 'show.json.jbuilder'
       else
