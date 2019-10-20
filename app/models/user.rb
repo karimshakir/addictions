@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-  validates :email, presence: true, uniqueness: true
+  # validates :email, presence: true, uniqueness: true
 
   has_many :addiction_occurrences
   has_many :addictions, through: :addiction_occurrences

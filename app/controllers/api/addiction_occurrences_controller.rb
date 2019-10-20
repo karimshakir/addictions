@@ -1,6 +1,6 @@
 class Api::AddictionOccurrencesController < ApplicationController
 
-    before_action :authenticate_user, only: [:create, :graph_info]
+    # before_action :authenticate_user, only: [:create, :graph_info]
 
   def index
     addiction_id_filter = params[:addiction_id] if params[:addiction_id]
